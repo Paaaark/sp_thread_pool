@@ -155,7 +155,42 @@ On Windows you may need to link against `Synchronize.lib` implicitly provided by
 
 ## Benchmark
 
-*(to be filled by repo owner)*
+Benchmark performed on a 3000×3000 image with max iterations of 300, using 8 threads.
+
+### BS::Thread_Pool Performance
+
+| Tasks  | Mean Time (ms) | Std Dev (ms) | Speed (pixels/ms) | Speedup |
+|--------|----------------|--------------|--------------------|---------|
+| 1      | 3209.35        | 12.24        | 2804.3             | 1.00x   |
+| 2      | 1609.89        | 4.61         | 5590.5             | 1.99x   |
+| 4      | 1501.88        | 5.27         | 5992.5             | 2.14x   |
+| 8      | 1048.94        | 2.45         | 8580.1             | 3.06x   |
+| 16     | 719.48         | 23.85        | 12509.1            | 4.46x   |
+| 32     | 583.73         | 14.72        | 15418.1            | 5.50x   |
+| 64     | 553.96         | 24.56        | 16246.7            | 5.79x   |
+| 128    | 585.07         | 38.29        | 15382.7            | 5.49x   |
+
+**Maximum speedup**: 5.793x using 64 tasks
+
+### SP::ThreadPool Performance
+
+| Tasks  | Mean Time (ms) | Std Dev (ms) | Speed (pixels/ms) | Speedup |
+|--------|----------------|--------------|--------------------|---------|
+| 1      | 3150.02        | 28.70        | 2857.1             | 1.00x   |
+| 2      | 1582.81        | 3.22         | 5686.1             | 1.99x   |
+| 4      | 1483.74        | 4.78         | 6065.8             | 2.12x   |
+| 8      | 1038.28        | 13.72        | 8668.2             | 3.03x   |
+| 16     | 678.65         | 17.39        | 13261.7            | 4.64x   |
+| 32     | 627.67         | 5.54         | 14338.8            | 5.02x   |
+| 64     | 545.37         | 19.13        | 16502.6            | 5.78x   |
+| 128    | 513.02         | 9.62         | 17543.3            | 6.14x   |
+
+**Maximum speedup**: 6.140x using 128 tasks
+
+### Key Observations:
+- SP::ThreadPool shows slightly better performance than BS::Thread_Pool
+- Both implementations achieve significant speedups (5.79x vs 6.14x)
+- Optimal task counts differ between implementations (64 vs 128 tasks)
 
 ## Contributing
 
