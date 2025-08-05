@@ -200,5 +200,5 @@ Benchmark performed on a 3000×3000 image with max iterations of 300, using 8 th
 
 ## License
 
-MIT © 2025 – see `LICENSE` file.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
